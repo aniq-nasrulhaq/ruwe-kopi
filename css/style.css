@@ -1,0 +1,315 @@
+body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url("../img/brick-bg.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.50);
+            z-index: -1;
+        }
+
+        /* LOGO */
+        #top-header {
+            padding: 30px 0;
+            text-align: center;
+            background: #ffffff;
+        }
+        #top-header img {
+            max-height: 85px;
+        }
+
+        /* NAVBAR */
+        #header {
+            background: #0e0e0e;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .nav-menu > li {
+            display: inline-block;
+            position: relative;
+        }
+        .nav-menu li a {
+            color: #c9a24d;
+            padding: 18px 22px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        .nav-menu li a:hover,
+        .menu-active > a {
+            color: #ffffff;
+        }
+        /* SUBMENU */
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #0e0e0e;
+            top: 100%;
+            left: 0;
+            min-width: 160px;
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 999;
+        }
+        .submenu li {
+            display: block;
+            text-align: left;
+        }
+        .submenu li a {
+            padding: 12px 20px;
+            display: block;
+            color: #c9a24d;
+        }
+        .submenu li a:hover {
+            background: #222;
+            color: #fff;
+        }
+        .menu-has-children.active .submenu {
+            display: block;
+        }
+
+/* HERO */
+#welcome { 
+    min-height:50vh; 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    flex-direction:column; 
+    text-align:center; 
+}
+
+#welcome h3 { 
+    font-family: 'Playfair Display', serif; 
+    font-size:52px; 
+    color:#c9a24d; 
+}
+
+#welcome p { 
+    max-width:650px; 
+    margin-top:15px; 
+    font-size:17px; 
+    color:#dddddd; 
+}
+
+/* ABOUT US */
+#about { 
+    padding:50px 0; 
+}
+
+#about h6 { 
+    color:#c9a24d; 
+    letter-spacing:2px; 
+    font-size:14px; 
+    text-transform:uppercase; 
+}
+
+#about h2 { 
+    font-family:'Playfair Display', serif; 
+    font-size:42px; 
+    margin-bottom:20px; 
+}
+
+#about p { 
+    color:#ccc; 
+    line-height:1.8; 
+    margin-bottom:15px; 
+}
+
+#about a { 
+    color:#c9a24d; 
+    text-decoration:none; 
+    font-weight:500; 
+}
+
+#about img { 
+    width:100%; 
+    border-radius:16px; 
+}
+
+/* SIGNATURE MENU */
+#signature-menu { 
+    padding:50px 0; 
+}
+
+#signature-menu .subtitle { 
+    color:#c9a24d; 
+    letter-spacing:2px; 
+    font-size:14px; 
+}
+
+#signature-menu .title { 
+    font-family:'Playfair Display', serif; 
+    font-size:42px; 
+    color:#ffffff; 
+    margin-top:5px; 
+}
+
+.menu-img { 
+    border-radius:16px; 
+    transition: transform 0.4s ease; 
+    cursor:pointer; 
+}
+
+.menu-img:hover { 
+    transform:scale(1.05); 
+}
+
+.view-menu-btn { 
+    margin-top:30px; 
+    padding:12px 30px; 
+    border-radius:30px; 
+    background:#0b3d2e; 
+    color:#fff; 
+    text-decoration:none; 
+    font-weight:500; 
+}
+
+.view-menu-btn:hover { 
+    background:#095c43; 
+    color:#fff; 
+}
+
+/* LOCATE US */
+#locate-us { 
+    padding:90px 0; 
+    background:#f6f8f6; 
+    color:#000; 
+}
+
+#locate-us .subtitle { 
+    letter-spacing:2px; 
+    font-size:14px; 
+    color:#555; 
+}
+
+#locate-us h2 { 
+    font-family:'Playfair Display', serif; 
+    font-size:42px; 
+    color:#0b3d2e; 
+    margin-bottom:20px; 
+}
+
+#locate-us p { 
+    color:#444; 
+    line-height:1.8; 
+}
+
+.btn-map { 
+    display:inline-block; 
+    margin-top:20px; 
+    padding:12px 30px; 
+    border-radius:30px; 
+    background:#0b3d2e; 
+    color:#fff; 
+    text-decoration:none; 
+    font-weight:500; 
+}
+
+.btn-map:hover { 
+    background:#095c43; 
+    color:#fff; 
+}
+
+/* CONTACT SOCIAL */
+#contact-social { 
+    padding:60px 0; 
+    background:#0e0e0e; 
+    color:#fff; 
+}
+
+#contact-social h3 { 
+    font-family:'Playfair Display', serif; 
+    font-size:36px; 
+    color:#c9a24d; 
+}
+
+#contact-social p { 
+    color:#ccc; 
+    margin-top:10px; 
+}
+
+#contact-social .social-icons { 
+    margin-top:25px; 
+}
+
+#contact-social .social-icons a { 
+    display:inline-block; 
+    margin:0 10px; 
+    font-size:24px; 
+    color:#fff; 
+    width:50px; 
+    height:50px; 
+    line-height:50px; 
+    border-radius:50%; 
+    background:#222; 
+    transition:all 0.3s ease; 
+    text-align:center; 
+}
+
+#contact-social .social-icons a:hover { transform:scale(1.2); }
+#contact-social .social-icons a.facebook { background:#3b5998; }
+#contact-social .social-icons a.instagram { background:#e4405f; }
+#contact-social .social-icons a.tiktok { background:#69C9D0; }
+#contact-social .social-icons a.whatsapp { background:#25D366; }
+#contact-social .social-icons a.email { background:#d44638; }
+
+/* FOOTER */
+#footer { 
+    padding:15px 0; 
+    background:#0e0e0e; 
+    text-align:center; 
+    font-size:12px; 
+    color:#888; 
+}
+
+/* Fade-in Animation */ 
+.fade-in { 
+    opacity:0; 
+    transform:translateY(30px); 
+    transition: all 0.5s ease-out; 
+} 
+
+.fade-in.visible { 
+    opacity:1; 
+    transform:translateY(0); 
+}
+
+/* ZOOM CONTROLS */
+#zoom-controls { 
+    position: fixed; 
+    top:15px; 
+    right:15px; 
+    z-index:9999; 
+    background: rgba(0,0,0,0.6); 
+    padding:6px; 
+    border-radius:20px; 
+}
+
+#zoom-controls button { 
+    background:#c9a24d; 
+    border:none; 
+    color:#000; 
+    font-size:14px; 
+    font-weight:600; 
+    margin:0 2px; 
+    padding:6px 10px; 
+    border-radius:50%; 
+    cursor:pointer; 
+}
+
+#zoom-controls button:hover { 
+    background:#fff; 
+}
