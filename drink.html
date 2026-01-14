@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Drink | Ruwe Kopi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url("img/brick-bg.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.50);
+            z-index: -1;
+        }
+
+        /* LOGO */
+        #top-header {
+            padding: 30px 0;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        #top-header img {
+            max-height: 85px;
+        }
+
+        /* NAVBAR */
+        #header {
+            position: relative; /* ensure header sits above other elements */
+            z-index: 10002;
+            background: #0e0e0e;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .nav-menu > li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .nav-menu li a {
+            color: #c9a24d;
+            padding: 18px 22px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .nav-menu li a:hover,
+        .menu-active > a {
+            color: #ffffff;
+        }
+
+        /* SUBMENU */
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #0e0e0e;
+            top: 100%;
+            left: 0;
+            min-width: 160px;
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .submenu li {
+            display: block;
+            text-align: left;
+        }
+
+        .submenu li a {
+            padding: 12px 20px;
+            display: block;
+            color: #c9a24d;
+        }
+
+        .submenu li a:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        .menu-has-children.active .submenu {
+            display: block;
+        }
+
+        /* ZOOM CONTROLS */
+        #zoom-controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+            background: rgba(0,0,0,0.6);
+            padding: 6px;
+            border-radius: 20px;
+        }
+
+        #zoom-controls button {
+            background: #c9a24d;
+            border: none;
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 2px;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #zoom-controls button:hover {
+            background: #ffffff;
+        }
+
+        /* Drink Menu */
+        #drink-menu { 
+            padding: 70px 0; 
+        }
+
+        .section-header { 
+            text-align: center; 
+            margin-bottom: 40px; 
+        }
+
+        .section-header h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 52px; 
+            color: #c9a24d; 
+        }
+
+        .section-header p { 
+            max-width: 800px; 
+            margin: auto; 
+            color: #dddddd; 
+        }
+
+        .drink-item {
+            background: #fff;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            text-align: center;
+            opacity: 0;
+            transition: all 1.2s ease;
+        }
+
+        .drink-item img { 
+            width: 100%; 
+            aspect-ratio: 3/4; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            margin-bottom: 15px; 
+        }
+
+        .drink-item h4 { 
+            font-size: 18px; 
+            font-weight: 600; 
+            color: #222; 
+        }
+
+        .drink-item p { 
+            font-size: 14px; 
+            color: #666; 
+        }
+
+        .drink-item .price { 
+            display: block; 
+            margin-top: 6px; 
+            font-weight: bold; 
+            color: #c9a24d; 
+        }
+
+        /* Animations */
+        .fade-left { 
+            transform: translateX(-40px); 
+        }
+
+        .fade-right { 
+            transform: translateX(40px); 
+        }
+
+        .fade-up { 
+            transform: translateY(40px); 
+        }
+
+        .in-view { 
+            opacity: 1 !important; 
+            transform: translateX(0) translateY(0) !important; 
+        }
+
+        /* ADD TO CART BUTTON */
+        .cart-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .cart-btn {
+            padding: 15px 50px;
+            background: #c9a24d;
+            color: #000;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn i {
+            margin-right: 10px;
+        }
+
+        .cart-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Contact Social */
+        #contact-social {
+            padding: 60px 0;
+            background: #0e0e0e;
+            color: #fff;
+        }
+
+        #contact-social h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #c9a24d;
+        }
+
+        #contact-social p {
+            color: #ccc;
+            margin-top: 10px;
+        }
+
+        #contact-social .social-icons {
+            margin-top: 25px;
+        }
+
+        #contact-social .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 24px; /* smaller size */
+            color: #fff;
+            width: 50px; /* smaller box */
+            height: 50px; /* smaller box */
+            line-height: 50px;
+            border-radius: 50%;
+            background: #222;
+            transition: all 0.3s ease;
+        }
+
+        #contact-social .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        #contact-social .social-icons a.facebook { background: #3b5998; }
+        #contact-social .social-icons a.instagram { background: #e4405f; }
+        #contact-social .social-icons a.tiktok { background: #69C9D0; }
+        #contact-social .social-icons a.whatsapp { background: #25D366; }
+        #contact-social .social-icons a.email {background: #d44638;}
+
+        /* Footer */
+        #footer {
+            padding: 15px 0; /* smaller height */
+            background: #0e0e0e;
+            text-align: center;
+            font-size: 12px; /* smaller font */
+            color: #888;
+        }
+
+        #footer {
+            padding: 40px 0 25px 0;
+            background: #0e0e0e;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        #footer h3 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 22px; 
+            color: #c9a24d; 
+            margin-bottom: 10px; 
+        }
+
+        #footer p { 
+            color: #ccc; 
+            margin-bottom: 15px; 
+        }
+
+        #footer .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 22px;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            border-radius: 50%;
+            background: #222;
+            color: #fff;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        #footer .social-icons a:hover { 
+            transform: scale(1.2); 
+        }
+
+        #footer .social-icons a.facebook { 
+            background: #3b5998; 
+        }
+
+        #footer .social-icons a.instagram { 
+            background: #e4405f; }
+
+        #footer .social-icons a.tiktok { 
+            background: #69C9D0; 
+        }
+
+        #footer .social-icons a.whatsapp { 
+            background: #25D366; 
+        }
+
+        /* IN VIEW */
+        .in-view { 
+            opacity:1 !important; 
+            transform: translateY(0) !important; 
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- TOP HEADER -->
+<section id="top-header">
+    <img src="img/logo.png" alt="Ruwe Kopi">
+</section>
+
+<!-- NAVBAR -->
+<header id="header">
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li class="menu-has-children">
+                <a href="#" id="menuToggle">MENU <i class="fa fa-caret-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="food.html">FOOD</a></li>
+                    <li class="menu-active"><a href="drink.html">DRINK</a></li>
+                </ul>
+            </li>
+            <li><a href="review.html">REVIEW</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ZOOM CONTROLS -->
+<div id="zoom-controls">
+    <button onclick="zoomIn()">A+</button>
+    <button onclick="zoomNormal()">A</button>
+    <button onclick="zoomOut()">A-</button>
+</div>
+
+<!-- DRINK MENU -->
+<section id="drink-menu">
+    <div class="container">
+
+        <div class="section-header">
+            <h3>Our Drink Selection</h3>
+            <p>Discover our refreshing drinks crafted with passion. From signature coffee to creamy favorites, every sip is made to elevate your moment at Ruwe Kopi.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><div class="drink-item fade-left"><img src="img/drink_1.jpg">
+                <h4>Mocha Frappe</h4>
+                <p>Chocolate & coffee blended with ice</p>
+                <span class="price">RM10.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-up"><img src="img/drink_2.jpg">
+                <h4>Matcha Butterscotch</h4>
+                <p>Matcha with rich butterscotch</p>
+                <span class="price">RM10.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-right"><img src="img/drink_3.jpg">
+                <h4>Butterscotch Frappe</h4>
+                <p>Sweet & creamy delight</p>
+                <span class="price">RM10.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-left"><img src="img/drink_4.jpg">
+                <h4>Matcha Latte</h4>
+                <p>Smooth matcha blend</p>
+                <span class="price">RM9.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-up"><img src="img/drink_5.jpg">
+                <h4>Chocolate Frappe</h4>
+                <p>Rich chocolate drink</p>
+                <span class="price">RM9.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-right"><img src="img/drink_6.jpg">
+                <h4>Matcha Strawberry</h4>
+                <p>Matcha with strawberries</p>
+                <span class="price">RM10.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-left"><img src="img/drink_7.jpg">
+                <h4>Americano</h4>
+                <p>Classic black coffee</p>
+                <span class="price">RM7.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-up"><img src="img/drink_8.jpg">
+                <h4>Caffe Latte</h4>
+                <p>Espresso & milk</p>
+                <span class="price">RM8.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-right"><img src="img/drink_9.jpg">
+                <h4>Cappuccino</h4>
+                <p>Foamy & rich</p>
+                <span class="price">RM8.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-left"><img src="img/drink_10.jpg">
+                <h4>Iced Lemon Tea</h4>
+                <p>Refreshing citrus tea</p>
+                <span class="price">RM6.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-up"><img src="img/drink_11.jpg">
+                <h4>Peach Tea</h4>
+                <p>Sweet peach flavor</p>
+                <span class="price">RM6.00</span>
+            </div>
+        </div>
+
+            <div class="col-md-4"><div class="drink-item fade-right"><img src="img/drink_12.jpg">
+                <h4>Sparkling Lemonade</h4>
+                <p>Refreshing lemon soda</p>
+                <span class="price">RM7.00</span>
+            </div>
+        </div>
+
+        <!-- ADD TO CART BUTTON (CENTER) -->
+        <div class="cart-section" class="fade-in">
+            <a href="order.html" class="cart-btn">
+                <i class="fas fa-cart-shopping"></i> Add to Cart
+            </a>
+        </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<section id="contact-social">
+    <div class="container text-center">
+        <h3>Connect With Us</h3>
+        <p>Follow us or chat with us directly</p>
+        <div class="social-icons">
+
+            <a href="https://www.facebook.com/p/Ruwe-kopi-100088086753230/" class="facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.instagram.com/ruwekopi/?hl=en" class="instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@ruwekopi" class="tiktok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+
+            <a href="https://wa.me/+60199093629" class="whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ruangnkopi@gmail.com"
+            target="_blank"
+            class="email">
+            <i class="fas fa-envelope"></i>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <p>&copy; 2025 This Website is for education purposes only | Inspired by modern coffee culture</p>
+    <p id="datetime"></p>
+</footer>
+
+<script>
+function updateTime() {
+    const now = new Date();
+    document.getElementById("datetime").innerHTML =
+        now.toLocaleDateString() + " | " + now.toLocaleTimeString();
+}
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+
+<script>
+let zoomLevel = 100;
+
+function zoomIn() {
+    zoomLevel += 10;
+    document.body.style.zoom = zoomLevel + "%";
+}
+
+function zoomOut() {
+    zoomLevel -= 10;
+    document.body.style.zoom = zoomLevel + "%";
+}
+
+function zoomNormal() {
+    zoomLevel = 100;
+    document.body.style.zoom = "100%";
+}
+</script>
+
+<script>
+// MENU TOGGLE
+document.getElementById("menuToggle").addEventListener("click", function(e){
+    e.preventDefault();
+    this.parentElement.classList.toggle("active");
+});
+
+// SCROLL ANIMATION
+function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top <= (window.innerHeight || document.documentElement.clientHeight) - 100;
+}
+
+function animateItems() {
+    const items = document.querySelectorAll('.drink-item');
+    items.forEach((item, index) => {
+        if (isInViewport(item)) {
+            setTimeout(() => { item.classList.add('in-view'); }, index * 150);
+        }
+    });
+}
+
+window.addEventListener('scroll', animateItems);
+window.addEventListener('load', animateItems);
+</script>
+
+</body>
+</html>

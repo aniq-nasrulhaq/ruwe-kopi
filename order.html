@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Order | Ruwe Kopi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url("img/brick-bg.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.50);
+            z-index: -1;
+        }
+
+        /* LOGO */
+        #top-header {
+            padding: 30px 0;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        #top-header img {
+            max-height: 85px;
+        }
+
+        /* NAVBAR */
+        #header {
+            position: relative; /* ensure header sits above other elements */
+            z-index: 10002;
+            background: #0e0e0e;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .nav-menu > li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .nav-menu li a {
+            color: #c9a24d;
+            padding: 18px 22px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+
+        .nav-menu li a:hover,
+        .menu-active > a {
+            color: #ffffff;
+        }
+
+        /* SUBMENU */
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #0e0e0e;
+            top: 100%;
+            left: 0;
+            min-width: 160px;
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .submenu li {
+            display: block;
+            text-align: left;
+        }
+
+        .submenu li a {
+            padding: 12px 20px;
+            display: block;
+            color: #c9a24d;
+        }
+
+        .submenu li a:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        .menu-has-children.active .submenu {
+            display: block;
+        }
+
+        /* ZOOM CONTROLS */
+        #zoom-controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+            background: rgba(0,0,0,0.6);
+            padding: 6px;
+            border-radius: 20px;
+        }
+
+        #zoom-controls button {
+            background: #c9a24d;
+            border: none;
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 2px;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #zoom-controls button:hover {
+            background: #ffffff;
+        }
+
+        .menu-card {
+            background: rgba(20,20,20,0.8);
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-card img {
+            width: 100%;
+            border-bottom: 2px solid #c9a24d;
+        }
+
+        .menu-card h5 {
+            margin: 15px 0 5px;
+            color: #c9a24d;
+        }
+
+        .menu-card p {
+            margin: 0 0 10px;
+            color: #fff;
+        }
+
+        .btn-add {
+            background: #0b3d2e;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .btn-add:hover {
+            background: #095c43;
+        }
+
+        /* Cart action buttons */
+        #cart .cart-actions { display: inline-flex; gap: 6px; align-items:center; }
+        .cart-btn {
+            background: transparent;
+            border: 1px solid #555;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .cart-btn:hover { background: #222; border-color: #c9a24d; color: #c9a24d; }
+        .cart-btn.remove { border-color: #a00; }
+
+        #cart {
+            background: rgba(0,0,0,0.7);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 50px;
+        }
+
+        #cart h3 {
+            color: #c9a24d;
+            margin-bottom: 15px;
+        }
+
+        #cart ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #cart ul li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+
+        #cart .total {
+            font-weight: 600;
+            color: #c9a24d;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        form.checkout-form {
+            margin-top: 40px;
+            background: rgba(20,20,20,0.8);
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        form.checkout-form label {
+            color: #c9a24d;
+            font-weight: 500;
+        }
+
+        form.checkout-form input,
+        form.checkout-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        form.checkout-form button {
+            background: #0b3d2e;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        form.checkout-form button:hover {
+            background: #095c43;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #0e0e0e;
+            font-size: 12px;
+            color: #888;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+<section id="top-header">
+    <img src="img/logo.png" alt="Ruwe Kopi Logo">
+</section>
+
+<header id="header">
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li class="menu-has-children">
+                <a href="#" id="menuToggle">MENU <i class="fa fa-caret-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="food.html">FOOD</a></li>
+                    <li><a href="drink.html">DRINK</a></li>
+                </ul>
+            </li>
+            <li><a href="review.html">REVIEW</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ZOOM CONTROLS -->
+<div id="zoom-controls">
+    <button onclick="zoomIn()">A+</button>
+    <button onclick="zoomNormal()">A</button>
+    <button onclick="zoomOut()">A-</button>
+</div>
+
+<section class="container mt-5">
+    <h2 class="section-title">Order Your Favourite Coffee</h2>
+
+    <!-- Menu Grid -->
+    <div class="row" id="menu-items">
+        <!-- Menu item template -->
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_1.jpg" alt="Menu 1">
+                <h5>Takoyaki</h5>
+                <p>RM12.00</p>
+                <button class="btn-add" onclick="addToCart('Takoyaki', 12)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_2.jpg" alt="Menu 1">
+                <h5>Chicken Tender</h5>
+                <p>RM10.00</p>
+                <button class="btn-add" onclick="addToCart('Chicken Tender', 10)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_3.jpg" alt="Menu 1">
+                <h5>French Fries</h5>
+                <p>RM8.00</p>
+                <button class="btn-add" onclick="addToCart('French Fries', 8)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_4.jpg" alt="Menu 1">
+                <h5>Spaghetti Bolognese</h5>
+                <p>RM15.00</p>
+                <button class="btn-add" onclick="addToCart('Spaghetti Bolognese', 15)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_5.jpg" alt="Menu 1">
+                <h5>Chicken Burger</h5>
+                <p>RM13.00</p>
+                <button class="btn-add" onclick="addToCart('Chicken Burger', 13)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_6.jpg" alt="Menu 1">
+                <h5>Beef Burger</h5>
+                <p>RM14.00</p>
+                <button class="btn-add" onclick="addToCart('Beef Burger', 14)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_7.jpg" alt="Menu 1">
+                <h5>Salad Bowl</h5>
+                <p>RM10.00</p>
+                <button class="btn-add" onclick="addToCart('Salad Bowl', 10)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_8.jpg" alt="Menu 1">
+                <h5>Pizza Margherita</h5>
+                <p>RM18.00</p>
+                <button class="btn-add" onclick="addToCart('Pizza Margherita', 18)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_9.jpg" alt="Menu 1">
+                <h5>Grilled Sandwich</h5>
+                <p>RM12.00</p>
+                <button class="btn-add" onclick="addToCart('Grilled Sandwich', 12)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_10.jpg" alt="Menu 1">
+                <h5>Fried Chicken</h5>
+                <p>RM14.00</p>
+                <button class="btn-add" onclick="addToCart('Fried Chicken', 14)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_11.jpg" alt="Menu 1">
+                <h5>Fish & Chips</h5>
+                <p>RM16.00</p>
+                <button class="btn-add" onclick="addToCart('Fish & Chips', 16)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/food_12.jpg" alt="Menu 1">
+                <h5>Cheese Quesadilla</h5>
+                <p>RM16.00</p>
+                <button class="btn-add" onclick="addToCart('Cheese Quesadilla', 16)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_1.jpg" alt="Menu 1">
+                <h5>Mocha Frappe</h5>
+                <p>RM10.00</p>
+                <button class="btn-add" onclick="addToCart('Mocha Frappe', 10)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_2.jpg" alt="Menu 1">
+                <h5>Matcha Butterscotch</h5>
+                <p>RM10.00</p>
+                <button class="btn-add" onclick="addToCart('Matcha Butterscotch', 10)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_3.jpg" alt="Menu 1">
+                <h5>Butterscotch Frappe</h5>
+                <p>RM10.00</p>
+                <button class="btn-add" onclick="addToCart('Butterscotch Frappe', 10)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_4.jpg" alt="Menu 1">
+                <h5>Matcha Latte</h5>
+                <p>RM9.00</p>
+                <button class="btn-add" onclick="addToCart('Matcha Latte', 9)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_5.jpg" alt="Menu 1">
+                <h5>Chocolate Frappe</h5>
+                <p>RM9.00</p>
+                <button class="btn-add" onclick="addToCart('Chocolate Frappe', 9)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_6.jpg" alt="Menu 1">
+                <h5>Matcha Strawberry</h5>
+                <p>RM10.00</p>
+                <button class="btn-add" onclick="addToCart('Matcha Strawberry', 10)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_7.jpg" alt="Menu 1">
+                <h5>Americano</h5>
+                <p>RM7.00</p>
+                <button class="btn-add" onclick="addToCart('Americano', 7)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_8.jpg" alt="Menu 1">
+                <h5>Caffe Latte</h5>
+                <p>RM8.00</p>
+                <button class="btn-add" onclick="addToCart('Caffe Latte', 8)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_9.jpg" alt="Menu 1">
+                <h5>Cappuccino</h5>
+                <p>RM8.00</p>
+                <button class="btn-add" onclick="addToCart('Cappuccino', 8)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_10.jpg" alt="Menu 1">
+                <h5>Iced Lemon Tea</h5>
+                <p>RM6.00</p>
+                <button class="btn-add" onclick="addToCart('Iced Lemon Tea', 6)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_11.jpg" alt="Menu 1">
+                <h5>Peach Tea</h5>
+                <p>RM6.00</p>
+                <button class="btn-add" onclick="addToCart('Peach Tea', 6)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="menu-card">
+                <img src="img/drink_12.jpg" alt="Menu 1">
+                <h5>Sparkling Lemonade</h5>
+                <p>RM7.00</p>
+                <button class="btn-add" onclick="addToCart('Sparkling Lemonade', 7)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div id="cart">
+        <h3>Cart</h3>
+        <ul id="cart-items"></ul>
+        <div class="total" id="cart-total">Total: RM0.00</div>
+    </div>
+
+    <!-- Checkout Form -->
+    <form class="checkout-form" id="checkout-form" onsubmit="return submitOrder()">
+        <h3>Checkout</h3>
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" required>
+        <label for="address">Address (if delivery)</label>
+        <input type="text" id="address">
+        <label for="pickup">Pickup / Delivery</label>
+        <select id="pickup" required>
+            <option value="pickup">Pickup</option>
+            <option value="delivery">Delivery</option>
+        </select>
+        <label for="payment">Payment Method</label>
+        <select id="payment" required>
+            <option value="cash">Cash</option>
+            <option value="online">Online Payment</option>
+        </select>
+        <button type="submit">Place Order</button>
+    </form>
+</section>
+
+<footer>
+    &copy; 2025 This Website is for education purposes only | Inspired by modern coffee culture.
+</footer>
+
+<script>
+let zoomLevel = 100;
+
+function zoomIn() {
+    zoomLevel += 10;
+    document.body.style.zoom = zoomLevel + "%";
+}
+
+function zoomOut() {
+    zoomLevel -= 10;
+    document.body.style.zoom = zoomLevel + "%";
+}
+
+function zoomNormal() {
+    zoomLevel = 100;
+    document.body.style.zoom = "100%";
+}
+</script>
+
+<script>
+    let cart = [];
+
+    function addToCart(name, price) {
+        let item = cart.find(i => i.name === name);
+        if(item){
+            item.qty++;
+        } else {
+            cart.push({name: name, price: price, qty: 1});
+        }
+        renderCart();
+    }
+
+    function renderCart() {
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        cartItems.innerHTML = '';
+        let total = 0;
+        cart.forEach(item => {
+            total += item.price * item.qty;
+            // escape single quotes in name when injecting into onclick attribute
+            const safeName = item.name.replace(/'/g, "\\'");
+            cartItems.innerHTML += `
+                <li>
+                    <div>
+                        ${item.name} x ${item.qty} <span>RM${(item.price*item.qty).toFixed(2)}</span>
+                    </div>
+                    <div class="cart-actions">
+                        <button class="cart-btn" onclick="decreaseQty('${safeName}')">-</button>
+                        <button class="cart-btn" onclick="increaseQty('${safeName}')">+</button>
+                        <button class="cart-btn remove" onclick="removeItem('${safeName}')">Remove</button>
+                    </div>
+                </li>`;
+        });
+        cartTotal.innerText = 'Total: RM' + total.toFixed(2);
+    }
+
+    function increaseQty(name){
+        const item = cart.find(i=>i.name===name);
+        if(item){ item.qty++; renderCart(); }
+    }
+
+    function decreaseQty(name){
+        const idx = cart.findIndex(i=>i.name===name);
+        if(idx === -1) return;
+        if(cart[idx].qty > 1){
+            cart[idx].qty--;
+        } else {
+            // if qty is 1, remove item
+            cart.splice(idx,1);
+        }
+        renderCart();
+    }
+
+    function removeItem(name){
+        const idx = cart.findIndex(i=>i.name===name);
+        if(idx === -1) return;
+        // remove immediately without confirmation
+        cart.splice(idx,1);
+        renderCart();
+    }
+
+    function submitOrder() {
+        if(cart.length === 0){
+            alert('Cart is empty!');
+            return false;
+        }
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const pickup = document.getElementById('pickup').value;
+        const payment = document.getElementById('payment').value;
+
+        let orderDetails = {
+            customer: name,
+            phone: phone,
+            address: address,
+            type: pickup,
+            payment: payment,
+            cart: cart
+        };
+
+        console.log('Order submitted:', orderDetails);
+        alert('Order placed successfully!');
+        // Clear cart
+        cart = [];
+        renderCart();
+        document.getElementById('checkout-form').reset();
+        return false; // prevent actual form submission for demo
+    }
+</script>
+
+</body>
+</html>

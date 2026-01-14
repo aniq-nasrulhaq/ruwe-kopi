@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home | Ruwe Kopi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ZOOM CONTROLS -->
+<div id="zoom-controls">
+    <button onclick="zoomIn()">A+</button>
+    <button onclick="zoomNormal()">A</button>
+    <button onclick="zoomOut()">A-</button>
+</div>
+
+<section id="top-header">
+    <img src="img/logo.png" alt="Ruwe Kopi Logo">
+</section>
+
+<header id="header">
+    <div class="container">
+        <nav>
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li class="menu-has-children">
+                    <a href="#" id="menuToggle">MENU <i class="fa fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="food.html">FOOD</a></li>
+                        <li><a href="drink.html">DRINK</a></li>
+                    </ul>
+                </li>
+                <li><a href="review.html">REVIEW</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="welcome" class="fade-in">
+    <h3>Welcome to Ruwe Kopi!</h3>
+    <p>Where every cup is carefully crafted to bring you comfort, rich flavor and a memorable coffee experience.</p>
+</section>
+
+<section id="about" class="fade-in">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="img/about_RK.jpg" alt="About Ruwe Coffee">
+            </div>
+            <div class="col-md-6">
+                <h6>About Us</h6>
+                <h2>Ruwe Coffee</h2>
+                <p>Ruwe Coffee is a local café built with passion for quality coffee and a love for creating a warm, welcoming space.</p>
+                <p>We believe coffee is more than just a drink but it’s a daily ritual.</p>
+                <a href="about.html">Learn More &raquo;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="signature-menu" class="fade-in">
+    <div class="container text-center">
+        <small class="subtitle">Your favourite coffee</small>
+        <h2 class="title">Signature Menu</h2>
+
+        <!-- SEARCH BAR -->
+        <input type="text" id="menuSearch" class="form-control w-50 mx-auto mb-4" placeholder="Search menu...">
+
+        <!-- SEARCH RESULT (Nama Menu) -->
+        <ul id="menuList" class="list-group w-50 mx-auto mb-3"></ul>
+
+        <!-- MENU DISPLAY -->
+        <div id="menuDisplay" class="text-center"></div>
+
+        <a href="food.html" class="btn view-menu-btn mt-3">View All Menu</a>
+    </div>
+</section>
+
+<section id="locate-us" class="fade-in">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <iframe src="https://www.google.com/maps?q=ruwe+kopi&output=embed" width="100%" height="380" style="border:0;border-radius:16px;" loading="lazy"></iframe>
+            </div>
+            <div class="col-md-6">
+                <small class="subtitle">Locate Us</small>
+                <h2>Visit Ruwe Coffee</h2>
+                <p>PT4553, Lebuhraya Tanah Merah, Kg. Hutan Kuin, Machang, Kelantan</p>
+
+                <!-- TABLE OPERATING HOURS -->
+                <table class="table table-bordered mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Day</th>
+                            <th>Opening Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Saturday – Thursday</td>
+                            <td>1:00 PM – 1:00 AM</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>3:00 PM – 1:00 AM</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="https://www.google.com/maps" target="_blank" class="btn-map">Get Direction</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact-social">
+    <div class="container text-center">
+        <h3>Connect With Us</h3>
+        <p>Follow us or chat with us directly</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/p/Ruwe-kopi-100088086753230/" class="facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/ruwekopi/?hl=en" class="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@ruwekopi" class="tiktok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/+60199093629" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ruangnkopi@gmail.com"
+            target="_blank"
+            class="email">
+            <i class="fas fa-envelope"></i>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <p>&copy; 2025 This Website is for education purposes only | Inspired by modern coffee culture</p>
+    <p id="datetime"></p>
+</footer>
+
+<!-- SCRIPTS --> 
+<script src="vendor/jquery/jquery.min.js"></script> 
+<script src="vendor/owlcarousel/owl.carousel.min.js"></script> 
+
+<script>
+// Navbar submenu toggle
+document.getElementById("menuToggle").addEventListener("click", function(e){ 
+    e.preventDefault(); 
+    this.parentElement.classList.toggle("active"); 
+});
+
+// Fade-in animation
+document.addEventListener("DOMContentLoaded", function() { 
+    const faders = document.querySelectorAll(".fade-in"); 
+    const appearOptions = { threshold:0.2, rootMargin:"0px 0px -50px 0px" }; 
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer){ 
+        entries.forEach(entry=>{ 
+            if(entry.isIntersecting){ 
+                entry.target.classList.add("visible"); 
+                observer.unobserve(entry.target); 
+            } 
+        }); 
+    }, appearOptions); 
+
+    faders.forEach(fader=>appearOnScroll.observe(fader));
+});
+
+// Owl carousel
+$(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+        loop:true, margin:20, autoplay:true, autoplayTimeout:3500,
+        responsive:{0:{items:1},768:{items:2},1200:{items:3}}
+    });
+});
+
+// ZOOM
+let zoomLevel=100;
+function zoomIn(){ zoomLevel+=10; document.body.style.zoom=zoomLevel+"%"; }
+function zoomOut(){ zoomLevel-=10; document.body.style.zoom=zoomLevel+"%"; }
+function zoomNormal(){ zoomLevel=100; document.body.style.zoom="100%"; }
+
+// TIME & DATE
+function updateTime(){
+    const now = new Date();
+    document.getElementById("datetime").innerHTML = now.toLocaleDateString()+" | "+now.toLocaleTimeString();
+}
+setInterval(updateTime,1000); updateTime();
+
+// MENU DATA
+const menus = [
+    {name: "Takoyaki", img:"img/food_1.jpg", price:"RM12"},
+    {name: "Chicken Tender", img:"img/food_2.jpg", price:"RM10"},
+    {name: "French Fries", img:"img/food_3.jpg", price:"RM8"},
+    {name: "Spaghetti Bolognese", img:"img/food_4.jpg", price:"RM15"},
+    {name: "Chicken Burger", img:"img/food_5.jpg", price:"RM13"},
+    {name: "Beef Burger", img:"img/food_6.jpg", price:"RM8"},
+    {name: "Salad Bowl", img:"img/food_7.jpg", price:"RM10"},
+    {name: "Pizza Margherita", img:"img/food_8.jpg", price:"RM18"},
+    {name: "Grilled Sandwich", img:"img/food_9.jpg", price:"RM12"},
+    {name: "Fried Chicken", img:"img/food_10.jpg", price:"RM14"},
+    {name: "Fish & Chips", img:"img/food_11.jpg", price:"RM16"},
+    {name: "Cheese Quesadilla", img:"img/food_12.jpg", price:"RM12"},
+
+    {name: "Mocha Frappe", img:"img/drink_1.jpg", price:"RM10"},
+    {name: "Matcha Butterscotch", img:"img/drink_2.jpg", price:"RM10"},
+    {name: "Butterscotch Frappe", img:"img/drink_3.jpg", price:"RM10"},
+    {name: "Matcha Latte", img:"img/drink_4.jpg", price:"RM9"},
+    {name: "Chocolate Frappe", img:"img/drink_5.jpg", price:"RM9"},
+    {name: "Matcha Strawberry", img:"img/drink_6.jpg", price:"RM10"},
+    {name: "Americano", img:"img/drink_7.jpg", price:"RM7"},
+    {name: "Caffe Latte", img:"img/drink_8.jpg", price:"RM8"},
+    {name: "Cappuccino", img:"img/drink_9.jpg", price:"RM8"},
+    {name: "Iced Lemon Tea", img:"img/drink_10.jpg", price:"RM6"},
+    {name: "Peach Tea", img:"img/drink_11.jpg", price:"RM6"},
+    {name: "Sparkling Lemonade", img:"img/drink_12.jpg", price:"RM7"},
+];
+
+const searchInput = document.getElementById("menuSearch");
+const menuList = document.getElementById("menuList");
+const menuDisplay = document.getElementById("menuDisplay");
+
+function displayMenu(name){
+    const menu = menus.find(m=> m.name.toLowerCase() === name.toLowerCase());
+    if(menu){
+        menuDisplay.innerHTML = `
+            <img src="${menu.img}" class="img-fluid mb-2" style="border-radius:16px; max-width:250px;">
+            <h5>${menu.name}</h5>
+            <p>Price: ${menu.price}</p>
+        `;
+    }
+}
+
+// Search / Filter names
+searchInput.addEventListener("keyup", function(){
+    const keyword = this.value.toLowerCase().trim(); // remove spaces
+    menuList.innerHTML = "";
+    
+    if(keyword === "") {
+        // Kalau search kosong, kosongkan paparan menu
+        menuDisplay.innerHTML = "";
+        return; // hentikan function
+    }
+
+    menus.forEach(menu=>{
+        if(menu.name.toLowerCase().includes(keyword)){
+            const li = document.createElement("li");
+            li.className = "list-group-item list-group-item-action";
+            li.textContent = menu.name;
+            li.style.cursor = "pointer";
+            li.onclick = ()=> displayMenu(menu.name);
+            menuList.appendChild(li);
+        }
+    });
+
+    if(menuList.children.length === 0){
+        menuList.innerHTML = "<li class='list-group-item text-center'>No menu found</li>";
+        menuDisplay.innerHTML = ""; // clear display kalau tiada match
+    }
+});
+</script>
+
+</body>
+</html>
